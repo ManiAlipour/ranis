@@ -1,9 +1,9 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
 export const commentStatuses = ["pending", "approved", "rejected"] as const;
 export type CommentStatus = (typeof commentStatuses)[number];
 
-export interface ICommentDocument extends Document {
+export interface IComment {
   user: Types.ObjectId;
   product: Types.ObjectId;
   rating: number;
@@ -15,7 +15,7 @@ export interface ICommentDocument extends Document {
   updatedAt: Date;
 }
 
-const commentSchema = new Schema<ICommentDocument>(
+const commentSchema = new Schema<IComment>(
   {
     user: { type: Schema.Types.ObjectId, ref: "User", required: true },
     product: {
@@ -40,6 +40,8 @@ const commentSchema = new Schema<ICommentDocument>(
 
 commentSchema.index({ product: 1, status: 1, createdAt: -1 });
 
-const Comment = mongoose.models.Comment || model("Comment", commentSchema);
+const Comment =
+  (mongoose.models.Comment as Model<IComment> | undefined) ??
+  model<IComment>("Comment", commentSchema);
 
 export default Comment;

@@ -1,4 +1,4 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
 export const orderStatuses = [
   "pending",
@@ -34,7 +34,7 @@ export interface IOrderItem {
   unitPrice: number;
 }
 
-export interface IOrderDocument extends Document {
+export interface IOrder {
   orderNumber: string;
   user: Types.ObjectId;
   items: IOrderItem[];
@@ -79,7 +79,7 @@ const orderItemSchema = new Schema<IOrderItem>(
   { _id: false },
 );
 
-const orderSchema = new Schema<IOrderDocument>(
+const orderSchema = new Schema<IOrder>(
   {
     orderNumber: { type: String, required: true, trim: true, unique: true },
     user: {
@@ -110,6 +110,8 @@ const orderSchema = new Schema<IOrderDocument>(
 
 orderSchema.index({ user: 1, createdAt: -1 });
 
-const Order = mongoose.models.Order || model("Order", orderSchema);
+const Order =
+  (mongoose.models.Order as Model<IOrder> | undefined) ??
+  model<IOrder>("Order", orderSchema);
 
 export default Order;

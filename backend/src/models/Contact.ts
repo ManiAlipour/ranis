@@ -1,4 +1,4 @@
-import mongoose, { model, Schema, type Document } from "mongoose";
+import mongoose, { model, Schema, type Model } from "mongoose";
 
 export const contactStatuses = [
   "new",
@@ -8,7 +8,7 @@ export const contactStatuses = [
 ] as const;
 export type ContactStatus = (typeof contactStatuses)[number];
 
-export interface IContactDocument extends Document {
+export interface IContact {
   firstName: string;
   lastName?: string;
   phoneNumber?: string;
@@ -20,7 +20,7 @@ export interface IContactDocument extends Document {
   updatedAt: Date;
 }
 
-const contactSchema = new Schema<IContactDocument>(
+const contactSchema = new Schema<IContact>(
   {
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, trim: true, default: undefined },
@@ -38,6 +38,8 @@ const contactSchema = new Schema<IContactDocument>(
   { timestamps: true },
 );
 
-const Contact = mongoose.models.Contact || model("Contact", contactSchema);
+const Contact =
+  (mongoose.models.Contact as Model<IContact> | undefined) ??
+  model<IContact>("Contact", contactSchema);
 
 export default Contact;
