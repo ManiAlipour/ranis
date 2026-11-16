@@ -1,6 +1,6 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
-export interface IVariantDocument extends Document {
+export interface IVariant {
   product: Types.ObjectId;
   sku: string;
   attributes: Map<string, string>;
@@ -12,7 +12,7 @@ export interface IVariantDocument extends Document {
   updatedAt: Date;
 }
 
-const variantSchema = new Schema<IVariantDocument>(
+const variantSchema = new Schema<IVariant>(
   {
     product: {
       type: Schema.Types.ObjectId,
@@ -42,6 +42,8 @@ const variantSchema = new Schema<IVariantDocument>(
 
 variantSchema.index({ product: 1, isActive: 1 });
 
-const Variant = mongoose.models.Variant || model("Variant", variantSchema);
+const Variant =
+  (mongoose.models.Variant as Model<IVariant> | undefined) ??
+  model<IVariant>("Variant", variantSchema);
 
 export default Variant;

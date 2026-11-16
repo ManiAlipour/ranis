@@ -1,4 +1,4 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
 export const transactionStatuses = [
   "pending",
@@ -8,7 +8,7 @@ export const transactionStatuses = [
 ] as const;
 export type TransactionStatus = (typeof transactionStatuses)[number];
 
-export interface ITransactionDocument extends Document {
+export interface ITransaction {
   order: Types.ObjectId;
   user: Types.ObjectId;
   amount: number;
@@ -22,7 +22,7 @@ export interface ITransactionDocument extends Document {
   updatedAt: Date;
 }
 
-const transactionSchema = new Schema<ITransactionDocument>(
+const transactionSchema = new Schema<ITransaction>(
   {
     order: {
       type: Schema.Types.ObjectId,
@@ -63,6 +63,7 @@ transactionSchema.index(
 );
 
 const Transaction =
-  mongoose.models.Transaction || model("Transaction", transactionSchema);
+  (mongoose.models.Transaction as Model<ITransaction> | undefined) ??
+  model<ITransaction>("Transaction", transactionSchema);
 
 export default Transaction;

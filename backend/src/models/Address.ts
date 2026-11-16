@@ -1,6 +1,6 @@
-import mongoose, { model, Schema, type Document } from "mongoose";
+import mongoose, { model, Schema, type Model } from "mongoose";
 
-export interface IAddressDocument extends Document {
+export interface IAddress {
   recipientFirstName: string;
   recipientLastName: string;
   phoneNumber: string;
@@ -14,7 +14,7 @@ export interface IAddressDocument extends Document {
   updatedAt: Date;
 }
 
-const addressSchema = new Schema<IAddressDocument>(
+const addressSchema = new Schema<IAddress>(
   {
     recipientFirstName: { type: String, required: true, trim: true },
     recipientLastName: { type: String, required: true, trim: true },
@@ -29,6 +29,8 @@ const addressSchema = new Schema<IAddressDocument>(
   { timestamps: true },
 );
 
-const Address = mongoose.models.Address || model("Address", addressSchema);
+const Address =
+  (mongoose.models.Address as Model<IAddress> | undefined) ??
+  model<IAddress>("Address", addressSchema);
 
 export default Address;

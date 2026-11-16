@@ -1,11 +1,11 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
 export interface ICartItem {
   variant: Types.ObjectId;
   quantity: number;
 }
 
-export interface ICartDocument extends Document {
+export interface ICart {
   user: Types.ObjectId;
   items: ICartItem[];
   createdAt: Date;
@@ -24,7 +24,7 @@ const cartItemSchema = new Schema<ICartItem>(
   { _id: false },
 );
 
-const cartSchema = new Schema<ICartDocument>(
+const cartSchema = new Schema<ICart>(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -37,6 +37,8 @@ const cartSchema = new Schema<ICartDocument>(
   { timestamps: true },
 );
 
-const Cart = mongoose.models.Cart || model("Cart", cartSchema);
+const Cart =
+  (mongoose.models.Cart as Model<ICart> | undefined) ??
+  model<ICart>("Cart", cartSchema);
 
 export default Cart;

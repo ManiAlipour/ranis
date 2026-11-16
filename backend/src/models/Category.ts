@@ -1,6 +1,6 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
-export interface ICategoryDocument extends Document {
+export interface ICategory {
   name: string;
   slug: string;
   description?: string;
@@ -12,7 +12,7 @@ export interface ICategoryDocument extends Document {
   updatedAt: Date;
 }
 
-const categorySchema = new Schema<ICategoryDocument>(
+const categorySchema = new Schema<ICategory>(
   {
     name: { type: String, required: true, trim: true },
     slug: {
@@ -36,6 +36,8 @@ const categorySchema = new Schema<ICategoryDocument>(
   { timestamps: true },
 );
 
-const Category = mongoose.models.Category || model("Category", categorySchema);
+const Category =
+  (mongoose.models.Category as Model<ICategory> | undefined) ??
+  model<ICategory>("Category", categorySchema);
 
 export default Category;

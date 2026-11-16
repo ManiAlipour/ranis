@@ -1,9 +1,9 @@
-import mongoose, { model, Schema, type Document, type Types } from "mongoose";
+import mongoose, { model, Schema, type Model, type Types } from "mongoose";
 
 export const productStatuses = ["draft", "active", "archived"] as const;
 export type ProductStatus = (typeof productStatuses)[number];
 
-export interface IProductDocument extends Document {
+export interface IProduct {
   name: string;
   slug: string;
   description: string;
@@ -15,7 +15,7 @@ export interface IProductDocument extends Document {
   updatedAt: Date;
 }
 
-const productSchema = new Schema<IProductDocument>(
+const productSchema = new Schema<IProduct>(
   {
     name: { type: String, required: true, trim: true },
     slug: {
@@ -46,6 +46,8 @@ const productSchema = new Schema<IProductDocument>(
 
 productSchema.index({ name: "text", description: "text", tags: "text" });
 
-const Product = mongoose.models.Product || model("Product", productSchema);
+const Product =
+  (mongoose.models.Product as Model<IProduct> | undefined) ??
+  model<IProduct>("Product", productSchema);
 
 export default Product;

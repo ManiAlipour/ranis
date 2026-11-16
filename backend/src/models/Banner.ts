@@ -1,6 +1,6 @@
-import mongoose, { model, Schema, type Document } from "mongoose";
+import mongoose, { model, Schema, type Model } from "mongoose";
 
-export interface IBannerDocument extends Document {
+export interface IBanner {
   title: string;
   subtitle?: string;
   imageUrl: string;
@@ -14,7 +14,7 @@ export interface IBannerDocument extends Document {
   updatedAt: Date;
 }
 
-const bannerSchema = new Schema<IBannerDocument>(
+const bannerSchema = new Schema<IBanner>(
   {
     title: { type: String, required: true, trim: true },
     subtitle: { type: String, trim: true, default: undefined },
@@ -31,6 +31,8 @@ const bannerSchema = new Schema<IBannerDocument>(
 
 bannerSchema.index({ placement: 1, isActive: 1, sortOrder: 1 });
 
-const Banner = mongoose.models.Banner || model("Banner", bannerSchema);
+const Banner =
+  (mongoose.models.Banner as Model<IBanner> | undefined) ??
+  model<IBanner>("Banner", bannerSchema);
 
 export default Banner;
