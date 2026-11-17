@@ -1,6 +1,6 @@
-import { join } from "path";
+import { join } from "node:path";
 
-const git = (args: string[]) =>
+const git = (args) =>
   Bun.spawnSync(["git", ...args], { stdout: "pipe", stderr: "inherit" });
 
 const stagedResult = git([

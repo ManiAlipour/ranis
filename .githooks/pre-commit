@@ -1,2 +1,2 @@
 #!/bin/sh
-exec bun .githooks/pre-commit.ts
+exec bun .githooks/pre-commit.mjs
