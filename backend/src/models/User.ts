@@ -19,6 +19,7 @@ export interface IUser {
   verifyPhone?: {
     codeHash: string;
     codeExpireAt: Date;
+    codeSentAt?: Date;
     attempts: number;
   };
 
@@ -27,9 +28,23 @@ export interface IUser {
   loginWithCode?: {
     codeHash: string;
     codeExpireAt: Date;
+    codeSentAt?: Date;
     attempts: number;
   };
+
+  authSessions: {
+    tokenHash: string;
+    expiresAt: Date;
+  }[];
 }
+
+const authSessionSchema = new Schema(
+  {
+    tokenHash: { type: String, required: true },
+    expiresAt: { type: Date, required: true },
+  },
+  { _id: false },
+);
 
 const userSchema = new Schema<IUser>(
   {
@@ -58,6 +73,7 @@ const userSchema = new Schema<IUser>(
       type: {
         codeHash: { type: String, required: true },
         codeExpireAt: { type: Date, required: true },
+        codeSentAt: { type: Date, required: false },
         attempts: { type: Number, required: true, default: 0 },
       },
       required: false,
@@ -70,11 +86,14 @@ const userSchema = new Schema<IUser>(
       type: {
         codeHash: { type: String, required: true },
         codeExpireAt: { type: Date, required: true },
+        codeSentAt: { type: Date, required: false },
         attempts: { type: Number, required: true, default: 0 },
       },
       required: false,
       default: undefined,
     },
+
+    authSessions: { type: [authSessionSchema], default: [] },
   },
   { timestamps: true },
 );
