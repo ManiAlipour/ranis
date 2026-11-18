@@ -2,6 +2,13 @@ import requireAdmin from "@lib/express/requireAdmin";
 import requireAuth from "@lib/express/auth";
 import { Router } from "express";
 import adminController from "./controller";
+import commentAdminController from "../comments/adminController";
+import {
+  adminCommentQuerySchema,
+  commentParamsSchema,
+  updateCommentStatusSchema,
+  validateAdminComment,
+} from "../comments/adminValidators";
 import {
   adminCategoryListQuerySchema,
   adminListQuerySchema,
@@ -22,6 +29,18 @@ import {
 const router = Router();
 
 router.use(requireAuth, requireAdmin);
+
+router.get(
+  "/comments",
+  validateAdminComment(adminCommentQuerySchema, "query"),
+  commentAdminController.list,
+);
+router.patch(
+  "/comments/:commentId/status",
+  validateAdminComment(commentParamsSchema, "params"),
+  validateAdminComment(updateCommentStatusSchema, "body"),
+  commentAdminController.updateStatus,
+);
 
 router.get(
   "/products",

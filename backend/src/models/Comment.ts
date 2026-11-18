@@ -39,6 +39,7 @@ const commentSchema = new Schema<IComment>(
 );
 
 commentSchema.index({ product: 1, status: 1, createdAt: -1 });
+commentSchema.index({ user: 1, product: 1 }, { unique: true });
 
 const Comment =
   (mongoose.models.Comment as Model<IComment> | undefined) ??
