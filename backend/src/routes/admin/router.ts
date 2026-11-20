@@ -5,6 +5,10 @@ import adminController from "./controller";
 import commentAdminController from "../comments/adminController";
 import bannerAdminRouter from "../banners/adminRouter";
 import contactAdminRouter from "../contacts/adminRouter";
+import orderAdminRouter from "./orders/router";
+import userAdminRouter from "./users/router";
+import transactionAdminRouter from "./transactions/router";
+import dashboardController from "./dashboard";
 import {
   adminCommentQuerySchema,
   commentParamsSchema,
@@ -33,6 +37,10 @@ const router = Router();
 router.use(requireAuth, requireAdmin);
 router.use("/banners", bannerAdminRouter);
 router.use("/contacts", contactAdminRouter);
+router.use("/orders", orderAdminRouter);
+router.use("/users", userAdminRouter);
+router.use("/transactions", transactionAdminRouter);
+router.get("/dashboard", dashboardController.summary);
 
 router.get(
   "/comments",
