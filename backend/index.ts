@@ -1,8 +1,15 @@
+import express from "express";
 import connectDB from "@lib/db/config";
-import { listen } from "@lib/express/app";
+import apiApp from "@lib/express/app";
+
+const app = express();
+app.use(apiApp);
 
 connectDB().catch((err) => console.log("DB Connection lost :", err));
 
-listen(() => {
-  console.log("App run!");
-});
+if (!process.env.VERCEL) {
+  const port = process.env.PORT || 5000;
+  app.listen(port, () => console.log("App run!"));
+}
+
+export default app;
