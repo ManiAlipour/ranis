@@ -9,6 +9,7 @@ import orderAdminRouter from "./orders/router";
 import userAdminRouter from "./users/router";
 import transactionAdminRouter from "./transactions/router";
 import dashboardController from "./dashboard";
+import uploadAdminRouter from "./uploads/router";
 import {
   adminCommentQuerySchema,
   commentParamsSchema,
@@ -40,6 +41,7 @@ router.use("/contacts", contactAdminRouter);
 router.use("/orders", orderAdminRouter);
 router.use("/users", userAdminRouter);
 router.use("/transactions", transactionAdminRouter);
+router.use("/uploads", uploadAdminRouter);
 router.get("/dashboard", dashboardController.summary);
 
 router.get(
