@@ -4,6 +4,7 @@ import { Router } from "express";
 import adminController from "./controller";
 import commentAdminController from "../comments/adminController";
 import bannerAdminRouter from "../banners/adminRouter";
+import contactAdminRouter from "../contacts/adminRouter";
 import {
   adminCommentQuerySchema,
   commentParamsSchema,
@@ -31,6 +32,7 @@ const router = Router();
 
 router.use(requireAuth, requireAdmin);
 router.use("/banners", bannerAdminRouter);
+router.use("/contacts", contactAdminRouter);
 
 router.get(
   "/comments",

@@ -6,6 +6,7 @@ import userRouter from "./user/router";
 import cartRouter from "./cart/router";
 import commentRouter from "./comments/router";
 import bannerRouter from "./banners/router";
+import contactRouter from "./contacts/router";
 
 const router = Router();
 
@@ -15,6 +16,7 @@ router.use("/users", userRouter);
 router.use("/cart", cartRouter);
 router.use("/products/:productSlug/comments", commentRouter);
 router.use("/banners", bannerRouter);
+router.use("/contacts", contactRouter);
 router.use(catalogRouter);
 
 export default router;
