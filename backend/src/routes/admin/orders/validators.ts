@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { orderStatuses } from "@models/Order";
+import { orderStatuses } from "../../../models/Order";
 import { z } from "zod";
 
 export const orderListQuerySchema = z.object({

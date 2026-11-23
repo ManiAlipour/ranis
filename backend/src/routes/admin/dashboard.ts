@@ -1,12 +1,12 @@
-import Banner from "@models/Banner";
-import Category from "@models/Category";
-import Comment from "@models/Comment";
-import Contact from "@models/Contact";
-import Order from "@models/Order";
-import Product from "@models/Product";
-import Transaction from "@models/Transaction";
-import User from "@models/User";
-import Controller from "@utils/baseController";
+import Banner from "../../models/Banner";
+import Category from "../../models/Category";
+import Comment from "../../models/Comment";
+import Contact from "../../models/Contact";
+import Order from "../../models/Order";
+import Product from "../../models/Product";
+import Transaction from "../../models/Transaction";
+import User from "../../models/User";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const dashboardController = new (class extends Controller {

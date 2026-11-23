@@ -1,7 +1,7 @@
-import Category from "@models/Category";
-import Product from "@models/Product";
-import Variant from "@models/Variant";
-import Controller from "@utils/baseController";
+import Category from "../../models/Category";
+import Product from "../../models/Product";
+import Variant from "../../models/Variant";
+import Controller from "../../utils/baseController";
 import type { PipelineStage } from "mongoose";
 import type { Request, Response } from "express";
 import type { z } from "zod";

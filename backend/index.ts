@@ -1,6 +1,6 @@
 import express from "express";
-import connectDB from "@lib/db/config";
-import apiApp from "@lib/express/app";
+import connectDB from "./src/lib/db/config";
+import apiApp from "./src/lib/express/app";
 
 const app = express();
 app.use(apiApp);

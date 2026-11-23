@@ -1,5 +1,5 @@
-import User from "@models/User";
-import { getBearerToken, hashSessionToken } from "@utils/auth/session";
+import User from "../../models/User";
+import { getBearerToken, hashSessionToken } from "../../utils/auth/session";
 import type { RequestHandler } from "express";
 
 const requireAuth: RequestHandler = async (req, res, next) => {

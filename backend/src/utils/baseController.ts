@@ -1,4 +1,4 @@
-import { HttpError } from "@lib/express/errorHandler";
+import { HttpError } from "../lib/express/errorHandler";
 import autoBind from "auto-bind";
 import type { Response } from "express";
 

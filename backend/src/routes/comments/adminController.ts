@@ -1,5 +1,5 @@
-import Comment from "@models/Comment";
-import Controller from "@utils/baseController";
+import Comment from "../../models/Comment";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const controller = new (class extends Controller {

@@ -1,5 +1,5 @@
-import User from "@models/User";
-import Controller from "@utils/baseController";
+import User from "../../../models/User";
+import Controller from "../../../utils/baseController";
 import type { Request, Response } from "express";
 
 const controller = new (class extends Controller {

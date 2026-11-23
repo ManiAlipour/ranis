@@ -1,10 +1,10 @@
-import Address from "@models/Address";
-import Cart from "@models/Cart";
-import Order from "@models/Order";
-import Product from "@models/Product";
-import User from "@models/User";
-import Variant from "@models/Variant";
-import Controller from "@utils/baseController";
+import Address from "../../models/Address";
+import Cart from "../../models/Cart";
+import Order from "../../models/Order";
+import Product from "../../models/Product";
+import User from "../../models/User";
+import Variant from "../../models/Variant";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 import { randomUUID } from "node:crypto";
 

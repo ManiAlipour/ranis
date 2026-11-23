@@ -9,7 +9,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-import baseRouter from "@routes/routes";
+import baseRouter from "../../routes/routes";
 app.use("/api", baseRouter);
 app.use(errorHandler);
 

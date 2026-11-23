@@ -1,9 +1,9 @@
-import Address from "@models/Address";
-import Comment from "@models/Comment";
-import Order from "@models/Order";
-import Transaction from "@models/Transaction";
-import User from "@models/User";
-import Controller from "@utils/baseController";
+import Address from "../../models/Address";
+import Comment from "../../models/Comment";
+import Order from "../../models/Order";
+import Transaction from "../../models/Transaction";
+import User from "../../models/User";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const getCurrentUser = (res: Response) =>

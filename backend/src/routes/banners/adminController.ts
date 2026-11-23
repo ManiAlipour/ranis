@@ -1,5 +1,5 @@
-import Banner from "@models/Banner";
-import Controller from "@utils/baseController";
+import Banner from "../../models/Banner";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const controller = new (class extends Controller {

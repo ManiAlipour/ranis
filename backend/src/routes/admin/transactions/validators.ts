@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { transactionStatuses } from "@models/Transaction";
+import { transactionStatuses } from "../../../models/Transaction";
 import { z } from "zod";
 
 export const adminTransactionListQuerySchema = z.object({

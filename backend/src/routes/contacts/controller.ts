@@ -1,5 +1,5 @@
-import Contact from "@models/Contact";
-import Controller from "@utils/baseController";
+import Contact from "../../models/Contact";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const controller = new (class extends Controller {

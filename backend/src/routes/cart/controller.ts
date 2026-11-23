@@ -1,8 +1,8 @@
-import Cart from "@models/Cart";
-import Product from "@models/Product";
-import User from "@models/User";
-import Variant from "@models/Variant";
-import Controller from "@utils/baseController";
+import Cart from "../../models/Cart";
+import Product from "../../models/Product";
+import User from "../../models/User";
+import Variant from "../../models/Variant";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const getUser = (res: Response) =>

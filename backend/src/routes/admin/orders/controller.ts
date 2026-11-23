@@ -1,6 +1,6 @@
-import Order, { type OrderStatus } from "@models/Order";
-import Variant from "@models/Variant";
-import Controller from "@utils/baseController";
+import Order, { type OrderStatus } from "../../../models/Order";
+import Variant from "../../../models/Variant";
+import Controller from "../../../utils/baseController";
 import type { Request, Response } from "express";
 
 const allowedTransitions: Record<OrderStatus, OrderStatus[]> = {

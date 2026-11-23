@@ -1,8 +1,8 @@
-import Comment from "@models/Comment";
-import Order from "@models/Order";
-import Product from "@models/Product";
-import User from "@models/User";
-import Controller from "@utils/baseController";
+import Comment from "../../models/Comment";
+import Order from "../../models/Order";
+import Product from "../../models/Product";
+import User from "../../models/User";
+import Controller from "../../utils/baseController";
 import type { Request, Response } from "express";
 
 const controller = new (class extends Controller {

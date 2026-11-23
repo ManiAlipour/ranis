@@ -1,4 +1,4 @@
-import Controller from "@utils/baseController";
+import Controller from "../../../utils/baseController";
 import type { Request, Response } from "express";
 import { randomUUID } from "node:crypto";
 

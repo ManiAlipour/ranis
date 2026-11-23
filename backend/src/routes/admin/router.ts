@@ -1,5 +1,5 @@
-import requireAdmin from "@lib/express/requireAdmin";
-import requireAuth from "@lib/express/auth";
+import requireAdmin from "../../lib/express/requireAdmin";
+import requireAuth from "../../lib/express/auth";
 import { Router } from "express";
 import adminController from "./controller";
 import commentAdminController from "../comments/adminController";

@@ -1,12 +1,12 @@
-import User from "@models/User";
-import { generateOTP, hashCode, verifyHashCode } from "@utils/auth/otp";
+import User from "../../models/User";
+import { generateOTP, hashCode, verifyHashCode } from "../../utils/auth/otp";
 import {
   createSessionToken,
   getSessionExpiry,
   hashSessionToken,
-} from "@utils/auth/session";
-import Controller from "@utils/baseController";
-import { getExpiryDate } from "@utils/date";
+} from "../../utils/auth/session";
+import Controller from "../../utils/baseController";
+import { getExpiryDate } from "../../utils/date";
 import type { Request, Response } from "express";
 import smsService from "../../services/smsService";
 

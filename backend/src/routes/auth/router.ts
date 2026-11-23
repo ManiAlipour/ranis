@@ -1,4 +1,4 @@
-import requireAuth from "@lib/express/auth";
+import requireAuth from "../../lib/express/auth";
 import { Router } from "express";
 import authController from "./controller";
 import {

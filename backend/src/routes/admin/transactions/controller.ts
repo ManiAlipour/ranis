@@ -1,5 +1,7 @@
-import Transaction, { type TransactionStatus } from "@models/Transaction";
-import Controller from "@utils/baseController";
+import Transaction, {
+  type TransactionStatus,
+} from "../../../models/Transaction";
+import Controller from "../../../utils/baseController";
 import type { Request, Response } from "express";
 
 const controller = new (class extends Controller {
